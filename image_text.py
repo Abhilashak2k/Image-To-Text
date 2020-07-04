@@ -39,7 +39,9 @@ class extraction:
             return dist.group()
 
 class category:
-    def strava(self, img):
+    def strava(self, imagepath):
+        scaledImage = set_image_dpi(imagepath)
+        img = cv2.imread(scaledImage)
         #print(pytesseract.image_to_string(img))
 
         #just making sure top of screenshot is cutout
@@ -58,19 +60,49 @@ class category:
 
 
 
+    def adidas(self, imagepath):
+        scaledImage = set_image_dpi(imagepath)
+        img = cv2.imread(scaledImage, 0)
+        #print(pytesseract.image_to_string(img))
 
-scaledImage = set_image_dpi("/home/abhilashak2k/Townscript/ImageText/strava5.jpg")
-img = cv2.imread(scaledImage)
+        e = extraction()
+        #if time is in hhmmss format
+        if(e.extract_time_hhmmss(pytesseract.image_to_string(img))):
+            print("\npossible time taken in hhmmss : ", e.extract_time_hhmmss(pytesseract.image_to_string(img)))
+        
+        #if time is in 00h00m00s format
+        elif(e.extract_time_mmss(pytesseract.image_to_string(img))) :
+            print("\npossible time taken in mmss : ", e.extract_time_mmss(pytesseract.image_to_string(img)))
+        
+        else:
+            img = cv2.imread(scaledImage, 0)
+            #if time is in hhmmss format
+            if(e.extract_time_hhmmss(pytesseract.image_to_string(img))):
+                print("\npossible time taken in hhmmss : ", e.extract_time_hhmmss(pytesseract.image_to_string(img)))
+
+            #if time is in 00h00m00s format
+            elif(e.extract_time_mmss(pytesseract.image_to_string(img))) :
+                print("\npossible time taken in mmss : ", e.extract_time_mmss(pytesseract.image_to_string(img)))
+
+
+        #distance in decimal format
+        print("\n\npossible distance covered : ", e.extract_dist(pytesseract.image_to_string(img)))
+
+
+
 cat = category()
+
 #img = image[500:20000, 0:1000]
 # cv2.imshow("img", img)
 # cv2.waitKey(5000)
 
 
 #if strava
-cat.strava(img)
+#cat.strava("/home/abhilashak2k/Townscript/ImageText/adidas4.jpg")
 
-#if nike
+#if adidas
+cat.adidas("/home/abhilashak2k/Townscript/ImageText/adidas3.jpg")
+
 
 
 
