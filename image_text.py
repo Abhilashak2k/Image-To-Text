@@ -114,10 +114,11 @@ cat = category()
 #cat.adidas("/home/abhilashak2k/Townscript/ImageText/adidas2.jpg")
 
 #if miscellaneous
-cat.miscellaneous("/home/abhilashak2k/Townscript/ImageText/misc8.png")
+cat.miscellaneous("/home/abhilashak2k/Townscript/ImageText/misc10.jpg")
 
 #misc2 didn't work
 #misv6 distance 7.13; read 713 :(
+#misc10 37 mins   
 
 
 
