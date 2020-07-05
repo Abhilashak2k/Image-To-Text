@@ -58,8 +58,6 @@ class category:
         #distance in decimal format
         print("\n\npossible distance covered : ", e.extract_dist(pytesseract.image_to_string(img)))
 
-
-
     def adidas(self, imagepath):
         scaledImage = set_image_dpi(imagepath)
         img = cv2.imread(scaledImage, 0)
@@ -73,16 +71,28 @@ class category:
         #if time is in 00h00m00s format
         elif(e.extract_time_mmss(pytesseract.image_to_string(img))) :
             print("\npossible time taken in mmss : ", e.extract_time_mmss(pytesseract.image_to_string(img)))
-        
-        else:
-            img = cv2.imread(scaledImage, 0)
-            #if time is in hhmmss format
-            if(e.extract_time_hhmmss(pytesseract.image_to_string(img))):
-                print("\npossible time taken in hhmmss : ", e.extract_time_hhmmss(pytesseract.image_to_string(img)))
 
-            #if time is in 00h00m00s format
-            elif(e.extract_time_mmss(pytesseract.image_to_string(img))) :
-                print("\npossible time taken in mmss : ", e.extract_time_mmss(pytesseract.image_to_string(img)))
+
+        #distance in decimal format
+        print("\n\npossible distance covered : ", e.extract_dist(pytesseract.image_to_string(img)))
+
+    def miscellaneous(self, imagepath):
+        scaledImage = set_image_dpi(imagepath)
+        img = cv2.imread(scaledImage, 0)
+        #print(pytesseract.image_to_string(img))
+
+        e = extraction()
+        #if time is in hhmmss format
+        if(e.extract_time_hhmmss(pytesseract.image_to_string(img))):
+            print("\npossible time taken in hhmmss : ", e.extract_time_hhmmss(pytesseract.image_to_string(img)))
+        
+        #if time is in 00h00m00s format
+        elif(e.extract_time_mmss(pytesseract.image_to_string(img))) :
+            print("\npossible time taken in mmss : ", e.extract_time_mmss(pytesseract.image_to_string(img)))
+
+        #if time is in hm format
+        elif(e.extract_time_hm(pytesseract.image_to_string(img))) :
+            print("\npossible time taken in hm : ", e.extract_time_hm(pytesseract.image_to_string(img)))
 
 
         #distance in decimal format
@@ -101,8 +111,13 @@ cat = category()
 #cat.strava("/home/abhilashak2k/Townscript/ImageText/adidas4.jpg")
 
 #if adidas
-cat.adidas("/home/abhilashak2k/Townscript/ImageText/adidas3.jpg")
+#cat.adidas("/home/abhilashak2k/Townscript/ImageText/adidas2.jpg")
 
+#if miscellaneous
+cat.miscellaneous("/home/abhilashak2k/Townscript/ImageText/misc8.png")
+
+#misc2 didn't work
+#misv6 distance 7.13; read 713 :(
 
 
 
